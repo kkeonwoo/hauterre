@@ -1,0 +1,322 @@
+<section class="section fp-auto-height">
+    <footer id="footer">
+      <div class="fContent">
+        <div class="btns">
+          <a href="#"><span class="anchor">개인정보처리방침</span></a>
+        </div>
+        <p class="copyRight">COPYRIGHT 2022. POSCO E&C INC. All rights reserved.</p>
+        <div class="topBtn">
+          <a href="#"><img src="../images/main/arrow_down.svg" alt="move first page" /></a>
+        </div>
+        <div class="fLogo">
+          <img src="../images/common/fLogo.svg" alt="" />
+        </div>
+      </div>
+    </footer>
+  </section>
+</main>
+<!-- //mainVisual -->
+</div>
+<script>
+const header = $("#header");
+const headerBtn = $("#header .btns");
+const depth01 = $("#gnb .list .depth01")
+const depth02 = $("#gnb .list .depth02")
+const gnb = $("#gnb");
+const gnbMenu = $("#gnb .list > li");
+const gnbBall = $("#header .ball");
+const play = $("#mainVisual .play");
+const pause = $("#mainVisual .pause");
+const nextPageBtn = $("#header .nextPage");
+const brandSwiperWrapper = $("#brand .swiper-wrapper");
+const mousePointer = $(".mousePointer");
+const mouseTxt = CSSRulePlugin.getRule(".mousePointer::before");
+const styleList = $("#style .styleList > li");
+const styleDesc = $("#style .styleList .desc");
+const project = $("#project");
+const gallery = $("#gallery");
+const galleryAni = $("#gallery .backgroundAni");
+let brandSwiperIndex = 0;
+let fullpageIndex = 0;
+let count = 0
+// const dragBefore = CSSRulePlugin.getRule(".drag::before");
+
+gsap.defaults({
+  duration: 0.3,
+  ease: "power2",
+});
+
+//brandSwiper mousePointer
+brandSwiperWrapper.on("mousemove", function (e) {
+  const posX = e.clientX;
+  const posY = e.clientY;
+  gsap.to(mousePointer, { left: posX , top: posY,delay:0.05 , scale: 1,x:"-50%",y:"-50%", opacity: 1 });
+  // gsap.to(dragBefore, { duration: 0.25, cssRule: { , width: 100, height: 100, opacity: 1 } });
+});
+brandSwiperWrapper.on("mouseleave", function () {
+  gsap.to(mousePointer, { scale: 0, opacity: 0 });
+});
+
+//brandSwiper
+const brandSwiper = new Swiper("#brand", {
+  slidesPerView: "auto",
+  spaceBetween: 50,
+  mousewheel: true,
+  on: {
+    // reachBeginning: function () {
+    //   count = 0;
+    //   brandSwiperWrapper.on("mousewheel",function(e){
+    //     count ++;
+    //     console.log(count)
+    //     const deltaY = e.originalEvent.deltaY;
+    //     if(deltaY < 0 && count >= 10){
+    //       $.fn.fullpage.setAllowScrolling(true, "up");
+    //     }
+    //   })
+    // },
+    // reachEnd: function () {
+    //   count = 0
+    //   brandSwiperWrapper.on("mousewheel",function(e){
+    //     count ++
+    //     console.log(count)
+    //     const deltaY = e.originalEvent.deltaY;
+    //     if(deltaY > 0 && count >= 10){
+    //       $.fn.fullpage.setAllowScrolling(true, "down");
+    //     }
+    //   })
+    // },
+    slideChange:function(){
+      count=0
+      count --
+    },
+    toEdge: function () {
+      count = 0
+      brandSwiperWrapper.on("mousewheel",function(e){
+        count ++
+        const deltaY = e.originalEvent.deltaY;
+        if(deltaY > 0 && count >= 10){
+          $.fn.fullpage.setAllowScrolling(true, "down");
+        } else if(deltaY <0 && count >=10){
+          $.fn.fullpage.setAllowScrolling(true,"up")
+        }
+      })
+    },
+  },
+});
+
+// gnbBall
+gnbMenu.on("mouseenter", function () {
+  const tx = $(this).offset().left + $(this).width() / 2;
+  gsap.to(gnbBall, {
+    left: tx,
+    opacity: 1,
+    ease: "power4",
+    duration: 0.5,
+  });
+});
+gnbMenu.on("mouseleave", function () {
+  gsap.to(gnbBall, { duration: 0.5, opacity: 0 });
+});
+
+//fullpage
+$("#main").fullpage({
+  navigation: true,
+  scrollBar: true,
+  navigationTooltips: ["HAUTERRE", "BRAND", "STYLE", "PROJECT", "GALLERY", "NEWS"],
+  showActiveTooltip: true,
+  afterLoad:function(origin, destination, direction, trigger) {
+    const mouseContent = ["DRAG", "COMING SOON"];
+    fullpageIndex = brandSwiperIndex;
+    if (destination.index === 0) {
+      nextPageBtn.on("click", function () {
+        $.fn.fullpage.moveTo(2);
+      });
+    } 
+    if(destination.index === 1){
+      console.log(count)
+      count=0;
+      $.fn.fullpage.setAllowScrolling(false)
+    }
+    if (destination.index === 6) {
+      $("#footer .topBtn").on("click", function () {
+        $.fn.fullpage.moveTo(1);
+      });
+    }
+    // if (destination.index === 1) {
+    //   mouseTxt.css("content", `${mouseContent[0]}`);
+    // }
+    // if (destination.index === 4 || destination.index === 5) {
+    //   mouseTxt.attr("data-content", "COMING SOON");
+    // }
+  },
+  onLeave:function(origin, destination, direction, trigger) {
+    if(destination.index !== 0){
+      gsap.to(nextPageBtn,{
+        opacity:0,
+        display:"none"
+      })
+    } else {
+      gsap.to(nextPageBtn,{
+        opacity:1,
+        display:"block"
+      })
+    }
+    if (destination.index === 6) {
+      gsap.to("#fp-nav", { opacity: 0, ease: "none" });
+    } else {
+      gsap.to("#fp-nav", { opacity: 1, ease: "none" });
+    }
+  },
+  beforeLeave:function(origin, destination, direction, trigger) {
+    if (destination.index === 1) {
+      $.fn.fullpage.setAllowScrolling(false);
+      if (direction === "down" && brandSwiper.realIndex > 2) {
+        $.fn.fullpage.moveTo(3);
+        $.fn.fullpage.setAllowScrolling(true, "down");
+      } else if (direction === "up" && brandSwiper.realIndex === 0) {
+        $.fn.fullpage.moveTo(1);
+        $.fn.fullpage.setAllowScrolling(true, "up");
+      }
+    } else {
+      $.fn.fullpage.setAllowScrolling(true);
+    }
+  },
+});
+
+//swiper
+const mainSwiper = new Swiper("#mainVisual", {
+  loop: true,
+  autoplay: {
+    delay: 10000,
+  },
+  pagination: {
+    el: "#mainVisual .pagination .fraction",
+    type: "custom",
+    renderCustom: function (swiper, current, total) {
+      return "0" + current + "&nbsp" + "of" + "&nbsp" + "0" + total;
+    },
+  },
+  navigation: {
+    nextEl: "#mainVisual .next",
+    prevEl: "#mainVisual .prev",
+  },
+  controller: {
+    inverse: true,
+  },
+});
+
+play.on("click", function () {
+  mainSwiper.autoplay.start();
+  $(this).css("display", "none");
+  pause.css("display", "block");
+});
+
+pause.on("click", function () {
+  mainSwiper.autoplay.stop();
+  $(this).css("display", "none");
+  play.css("display", "block");
+});
+
+//style
+let max = "calc(70% - 3px)"
+let min = "calc(30% - 3px)"
+styleList.on("mouseenter", function () {
+  const selected = $(this).index();
+  const selectedDesc =$(this).find(".desc");
+  const selectedTxtBox =$(this).find(".txtBox")
+  gsap.killTweensOf(selectedTxtBox)
+  gsap.killTweensOf(selectedDesc)
+  if(selected === 0){
+    gsap.to(styleList.eq(0),{ flexBasis:`${max}`, height:`${max}`,duration:0.5})
+    gsap.to(styleList.eq(1),{ flexBasis:`${min}`, height:`${max}`,duration:0.5})
+    gsap.to(styleList.eq(2),{ flexBasis:`${max}`, height:`${min}`,duration:0.5})
+    gsap.to(styleList.eq(3),{ flexBasis:`${min}`, height:`${min}`,duration:0.5})
+    gsap.to(selectedTxtBox,{y:-100,ease:"power1",delay:0.1,duration:1})
+    gsap.to(selectedDesc,{display:"block",opacity:1,ease:"none",delay:0.2,duration:1})
+  } else if (selected === 1){
+    gsap.to(styleList.eq(0),{ flexBasis:`${min}`, height:`${max}`,duration:0.5})
+    gsap.to(styleList.eq(1),{ flexBasis:`${max}`, height:`${max}`,duration:0.5})
+    gsap.to(styleList.eq(2),{ flexBasis:`${min}`, height:`${min}`,duration:0.5})
+    gsap.to(styleList.eq(3),{ flexBasis:`${max}`, height:`${min}`,duration:0.5})
+    gsap.to(selectedTxtBox,{y:-100,ease:"power1",delay:0.1,duration:1})
+    gsap.to(selectedDesc,{display:"block",opacity:1,ease:"none",delay:0.2,duration:1})
+  } else if (selected === 2){
+          gsap.to(styleList.eq(0),{ flexBasis:`${max}`, height:`${min}`,duration:0.5})
+          gsap.to(styleList.eq(1),{ flexBasis:`${min}`, height:`${min}`,duration:0.5})
+          gsap.to(styleList.eq(2),{ flexBasis:`${max}`, height:`${max}`,duration:0.5})
+          gsap.to(styleList.eq(3),{ flexBasis:`${min}`, height:`${max}`,duration:0.5})
+          gsap.to(selectedDesc,{opacity:1,ease:"none",delay:0.2,duration:1})
+        } else {
+          gsap.to(styleList.eq(0),{ flexBasis:`${min}`, height:`${min}`,duration:0.5})
+          gsap.to(styleList.eq(1),{ flexBasis:`${max}`, height:`${min}`,duration:0.5})
+          gsap.to(styleList.eq(2),{ flexBasis:`${min}`, height:`${max}`,duration:0.5})
+          gsap.to(styleList.eq(3),{ flexBasis:`${max}`, height:`${max}`,duration:0.5})
+          gsap.to(selectedDesc,{opacity:1,ease:"none",delay:0.2,duration:1})
+  }
+});
+styleList.on("mouseleave",function(){
+  const selectedDesc =$(this).find(".desc")
+  const selectedTxtBox =$(this).find(".txtBox")
+  gsap.killTweensOf(selectedTxtBox)
+  gsap.killTweensOf(selectedDesc)
+  gsap.to(selectedDesc,{opacity:0,display:"none",ease:"none",duration:0.02})
+  gsap.to(selectedTxtBox,{y:0,ease:"power1",duration:0.02})
+
+})
+
+//project
+project.on("mousemove", function (e) {
+  const tx = e.clientX;
+  const ty = e.clientY;
+  gsap.to(".mousePointer02", { left: tx , top: ty , delay:0.05, x:"-50%",y:"-50%", scale: 1, opacity: 1 });
+});
+project.on("mouseleave", function () {
+  gsap.to(".mousePointer02", { scale: 0, opacity: 0 });
+});
+
+//gallery
+gallery.on("mousemove", function (e) {
+  const tx = e.clientX;
+  const ty = e.clientY;
+  gsap.to(".mousePointer02", { left: tx , top: ty, delay:0.05 , x:"-50%",y:"-50%", scale: 1, opacity: 1 });
+});
+gallery.on("mouseleave", function () {
+  gsap.to(".mousePointer02", { scale: 0, opacity: 0 });
+});
+
+//responsive
+$(window).on("resize",function(){
+  const w = $(window).outerWidth()
+  if(w<1024){
+    header.addClass("mobile")
+    depth02.stop(500).slideUp()
+  } else {
+    header.removeClass("mobile")
+  }
+})
+
+headerBtn.on("click",function(){
+      header.toggleClass("open")
+      depth02.stop(500).slideUp()
+      $(window).on("scroll touchmove mousewheel", function (e) {
+      $(window).scrollTop(0);
+      e.stopPropagation();
+      return false;
+    });
+  })
+
+depth01.on("click",function(e){
+  e.preventDefault();
+  const depth02 = $(this).next()
+  const siblings = $(this).parents().siblings().find(".depth02")
+  console.log(siblings)
+  console.log($(this))
+  console.log($(this).parents())
+  console.log($(this).parents().siblings())
+  siblings.stop().slideUp()
+  depth02.stop().slideToggle()
+  return false
+})
+</script>
+</body>
+</html>

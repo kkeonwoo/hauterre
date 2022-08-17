@@ -1,0 +1,148 @@
+<? include("../include/header.html"); ?>
+<div id="fullBody">
+  <div id="story">
+    <section class="section">
+      <div id="subVisual">
+        <h1>STORY</h1>
+        <div class="bgVideo">
+          <div class="video">
+            <iframe src="https://player.vimeo.com/video/719683267?wmode=opaque&quality=1080p&muted=1&autoplay=1&autopause=0&loop=1&background=1" frameborder="0"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div id="branding">
+        <ul>
+          <li>
+            <div class="txtBox">
+              <h2>HAUTE</h2>
+              <p class="desc">Haute는 귀한 분들의 "삶의 수준"을 의미합니다</p>
+            </div>
+          </li>
+          <li>
+            <div class="txtBox">
+              <h2>TERRE</h2>
+              <p class="desc">Terre는 새로운 터전의 "주거의 바탕"을 의미합니다.</p>
+            </div>
+          </li>
+        </ul>
+        <div class="line"></div>
+      </div>
+    </section>
+    <section class="section">
+      <div id="lifeStyle">
+        <ul>
+          <li>
+            <div class="txtBox">
+              <h2>삶의 수준</h2>
+              <p class="desc">쉽게 빛 바래지 않는 예술과 품격이 담긴 특별한 삶</p>
+            </div>
+          </li>
+          <li>
+            <div class="txtBox">
+              <h2>주거의 바탕</h2>
+              <p class="desc">엄선된 친환경 자재와 첨단 스마트 기술로 지어진 대담한 주거</p>
+            </div>
+          </li>
+        </ul>
+        <div class="bgVideo">
+          <div class="video">
+            <iframe src="https://player.vimeo.com/video/719683575?wmode=opaque&quality=1080p&muted=1&autoplay=1&autopause=0&loop=1&background=1" frameborder="0"></iframe>
+          </div>
+        </div>
+        <div class="line"></div>
+      </div>
+    </section>
+    <section class="section">
+      <div id="story01">
+        <h1 class="title">특별한 시작이 남다른 결과를 만드는</h1>
+      </div>
+    </section>
+    <section class="section">
+      <div id="story02">
+        <h1 class="title">오늘을 넘어 내일을 생각하는</h1>
+        <div class="bgVideo">
+          <div class="video">
+            <iframe src="https://player.vimeo.com/video/719683677?wmode=opaque&quality=1080p&muted=1&autoplay=1&autopause=0&loop=1&background=1" frameborder="0"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div id="story03">
+        <h1 class="title">처음부터 끝까지 다른 차원의</h1>
+      </div>
+    </section>
+    <section class="section">
+      <div id="story04">
+        <h1 class="title">
+          새로운 하이엔드 주거의 시작 <br />
+          오티에르
+        </h1>
+        <div class="line h30"></div>
+      </div>
+    </section>
+    <? include("../include/footer02.html"); ?>
+  </div>
+</div>
+<script>
+  const nextPageBtn = $("#header .nextPage");
+  const subVisualTL = gsap.timeline({ paused: true });
+  const brandingTL = gsap.timeline({ paused: true });
+  const lifeStyleTL = gsap.timeline({ paused: true });
+  const storyTL = gsap.timeline({ paused: true });
+  const story04TL = gsap.timeline({ paused: true });
+  gsap.defaults({
+    duration: 0.5,
+    ease: "sine",
+  });
+  subVisualTL.from("#subVisual h1", { y: 100, opacity: 0 });
+  //   prettier-ignore
+  brandingTL.from("#branding .line", { scaleY: 0 })
+            .from("#branding .txtBox", { opacity: 0, delay: 0.2, duration:1, stagger:{each:0.5} });
+
+  lifeStyleTL.from("#lifeStyle .txtBox", { opacity: 0, duration: 1, stagger: { each: 0.5 } });
+  //prettier-ignore
+  storyTL.to("#story01 .title", { opacity: 1 })
+         .to("#story02 .title", { opacity: 1 })
+         .to("#story03 .title", { opacity: 1 });
+  //story-fullpage
+  $("#story").fullpage({
+    scrollBar: true,
+    afterLoad(origin, destination, direction, trigger) {
+      if (destination.index === 0) {
+        nextPageBtn.on("click", function () {
+          $.fn.fullpage.moveTo(2);
+        });
+        $("#story .bgVideo iframe")
+          .imagesLoaded()
+          .always(function () {
+            subVisualTL.restart();
+          });
+      }
+      if (destination.index === 1) {
+        brandingTL.restart();
+      }
+      if (destination.index === 2) {
+        lifeStyleTL.restart();
+      }
+      if (destination.index === 3 || destination.index === 4 || destination.index === 5) {
+        storyTL.restart();
+        brandingTL.restart();
+      } else {
+        storyTL.pause(0);
+      }
+      if (destination.index === 6) {
+        $("#footer .topBtn").on("click", function () {
+          $.fn.fullpage.moveTo(1);
+        });
+      }
+    },
+    onLeave(origin, destination, direction, trigger) {
+      if (destination.index !== 0) {
+        gsap.to(nextPageBtn, { opacity: 0, duration: 0.1, ease: "none" });
+      }
+    },
+  });
+</script>
