@@ -1,3 +1,4 @@
+<?php include_once("index.html"); ?>
 <?php
 $action = isset($_GET['action']) ? strtolower($_GET['action']) : '';
 
@@ -211,24 +212,24 @@ header("Content-type: text/html; charset=euc-kr");
 		</div>
 
 		<div class="description padding30">
-			<span class="txtBlue">¿ÀÅä¼ÂÀº À©µµ¿ì ¿î¿µÃ¼Á¦¿¡ Apache HTTP Server, PHP, MySQL µîÀÇ 
-			¼­¹ö Á¦Ç°À» ÇÑ¹ø¿¡ ¼³Ä¡ÇØ ÁÖ´Â ±â´É°ú ÀÌ·¸°Ô ¼³Ä¡µÈ ÇÁ·Î±×·¥À» 
-			±×·¡ÇÈ »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º(GUI)¸¦ ÅëÇØ ½±°Ô ¼³Á¤ÀÇ º¯°æ, °ü¸®¸¦ ÇÒ ¼ö ÀÖµµ·Ï Áö¿øÇÏ´Â ÇÁ·Î±×·¥ÀÔ´Ï´Ù.</span><br>
+			<span class="txtBlue">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î¿µÃ¼ï¿½ï¿½ï¿½ï¿½ Apache HTTP Server, PHP, MySQL ï¿½ï¿½ï¿½ï¿½ 
+			ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½É°ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ 
+			ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½(GUI)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½Ô´Ï´ï¿½.</span><br>
 			AutoSet is a GUI based installer and administrative tool which enables to install 
 			Apache HTTP Server, PHP, MySQL and 
 			Other packages at once and helps easy set-ups and management.<br>
 			<br>
-			<span class="txtBlue">ÀÌ ÇÁ·Î±×·¥Àº ´©±¸³ª ¹«·á·Î ´Ù¿î·ÎµåÇØ »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.</span><br>
+			<span class="txtBlue">ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.</span><br>
 			The program is free to download for anyone.<br>
 			<br>
-			<span class="txtBlue">&lt;¿ÀÅä¼Â ¼³Ä¡ °æ·Î&gt;\public_html µð·ºÅä¸®¿¡ È¨ÆäÀÌÁö ÆÄÀÏÀ» ÀÛ¼ºÇØ ³ÖÀ¸¼¼¿ä!</span><br>
+			<span class="txtBlue">&lt;ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½&gt;\public_html ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!</span><br>
 			Create homepage files in the &lt;AutoSet installation path&gt;/public_html directory!<br>
 			<br>
-			<span class="txtBlue">ÀÌ ÆäÀÌÁö°¡ °è¼Ó º¸ÀÎ´Ù¸é &lt;¿ÀÅä¼Â ¼³Ä¡ °æ·Î&gt;\public_html\index.php ÆÄÀÏÀ» »èÁ¦ÇØ ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.</span><br>
+			<span class="txtBlue">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î´Ù¸ï¿½ &lt;ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½&gt;\public_html\index.php ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½Ã±ï¿½ ï¿½Ù¶ï¿½ï¿½Ï´ï¿½.</span><br>
 			If this page is being still displayed, 
 			Please remove index.php file in the &lt;AutoSet installation path&gt;/public_html directory.<br>
 			<br>
-			<span class="txtBlue">MariaDBÀÇ root »ç¿ëÀÚÀÇ ÃÊ±â ¾ÏÈ£´Â autosetÀÔ´Ï´Ù. root »ç¿ëÀÚ·Î ·Î±×ÀÎ ÈÄ, ¾ÏÈ£¸¦ º¯°æ ÈÄ »ç¿ëÇØ ÁÖ¼¼¿ä.</span><br>
+			<span class="txtBlue">MariaDBï¿½ï¿½ root ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½È£ï¿½ï¿½ autosetï¿½Ô´Ï´ï¿½. root ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.</span><br>
 			The initial password for MariaDB's root user is autoset. Login as the root user, change the password, and then try again.<br>
 			<br>
 			<div style="padding:10px;border-radius:8px;background:#efefef;font-family:tahoma;">
@@ -236,7 +237,7 @@ header("Content-type: text/html; charset=euc-kr");
 			FLUSH PRIVILEGES;
 			</div>
 			<br>
-			<span class="txtBlue">AutoSetÀº ÇÑ±¹ ¹×/¶Ç´Â ±âÅ¸ ±¹°¡¿¡¼­ ¿ÀÅä¼Â°³¹ßÀÚ±×·ìÀÇ »óÇ¥ ¶Ç´Â µî·Ï »óÇ¥ÀÔ´Ï´Ù. ÀÌ¿Ü ¸ðµç ¸¶Å©´Â ÇØ´ç ¼ÒÀ¯ÀÚÀÇ Àç»êÀÔ´Ï´Ù.</span><br>
+			<span class="txtBlue">AutoSetï¿½ï¿½ ï¿½Ñ±ï¿½ ï¿½ï¿½/ï¿½Ç´ï¿½ ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½Ú±×·ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½Ô´Ï´ï¿½. ï¿½Ì¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.</span><br>
 			AutoSet is a trademark or registered trademark of The AutoSet Developer Group in the Korea and/or other countries and is used by AutoSet-Trademark-Policy under license from owner. All other marks are the property of their respective owners.
 		</div>
 
@@ -253,10 +254,10 @@ header("Content-type: text/html; charset=euc-kr");
 		</div>
 
 		<div class="description">
-			<span class="txtBlue">¿ÀÅä¼Â ¸Å´ÏÀúÀÇ ¹öÀüÀº 10.7.2.10ÀÌ¸ç, Æ÷ÇÔµÈ ÆÐÅ°Áö´Â 2018.09.21 ±âÁØ ÃÖ½Å ¹öÀüÀÔ´Ï´Ù.</span><br>
+			<span class="txtBlue">ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 10.7.2.10ï¿½Ì¸ï¿½, ï¿½ï¿½ï¿½Ôµï¿½ ï¿½ï¿½Å°ï¿½ï¿½ï¿½ï¿½ 2018.09.21 ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.</span><br>
 			The current version of AutoSet is 10.7.2.10 and it consists of the latest versions of packages on September 21, 2018.<br>
 			<br>
-			<span class="txtBlue">¿ÀÅä¼Â¿¡ ´ëÇÑ º¸´Ù ÀÚ¼¼ÇÑ Á¤º¸¸¦ ¿øÇÏ½Ã¸é ¿ÀÅä¼Â °ø½Ä À¥»çÀÌÆ®¸¦ ¹æ¹®ÇÏ½Ê½Ã¿À.</span><br>
+			<span class="txtBlue">ï¿½ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï½Ã¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½æ¹®ï¿½Ï½Ê½Ã¿ï¿½.</span><br>
 			For more information about AutoSet, Please visit the official website of AutoSet.<br>
 			<br>
 			<span class="txtBlue">URL : <a href="http://www.autoset.net" target="_blank">http://www.autoset.net</a></span>
