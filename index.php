@@ -1,4 +1,4 @@
-<?php include_once("index.html"); ?>
+<?php include("index.html"); ?>
 <?php
 $action = isset($_GET['action']) ? strtolower($_GET['action']) : '';
 

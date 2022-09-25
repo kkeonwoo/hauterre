@@ -9,11 +9,11 @@
   </head>
   <body>
     <script>
-      const md = new MobileDetect();
+      const md = new MobileDetect(window.navigator.userAgent);
       if (md.mobile()) {
-        location.href = "HAUTERRE responsive/html/index.html";
+        location.href = "HAUTERRE responsive/index.html";
       } else {
-        location.href = "HAUTERRE pc/html/index.html";
+        location.href = "HAUTERRE pc/index.html";
       }
     </script>
   </body>
