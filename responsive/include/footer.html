@@ -289,15 +289,16 @@ $(window).on("resize",function(){
   const w = $(window).outerWidth()
   if(w<1024){
     header.addClass("mobile")
-    depth02.stop(500).slideUp()
+    depth02.delay(250).slideUp()
   } else {
     header.removeClass("mobile")
   }
-})
+});
+$(window).trigger("resize")
 
 headerBtn.on("click",function(){
       header.toggleClass("open")
-      depth02.stop(500).slideUp()
+      depth02.delay(250).slideUp()
       $(window).on("scroll touchmove mousewheel", function (e) {
       $(window).scrollTop(0);
       e.stopPropagation();
@@ -306,16 +307,13 @@ headerBtn.on("click",function(){
   })
 
 depth01.on("click",function(e){
-  e.preventDefault();
-  const depth02 = $(this).next()
-  const siblings = $(this).parents().siblings().find(".depth02")
-  console.log(siblings)
-  console.log($(this))
-  console.log($(this).parents())
-  console.log($(this).parents().siblings())
-  siblings.stop().slideUp()
-  depth02.stop().slideToggle()
-  return false
+  if(header.hasClass("mobile")){
+    const depth02 = $(this).next()
+    const siblings = $(this).parent().siblings().find(".depth02")
+    siblings.stop().slideUp()
+    depth02.stop().slideToggle()
+    return false
+  }
 })
 </script>
 </body>
